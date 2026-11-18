@@ -3,6 +3,7 @@ document.querySelectorAll('[data-version]').forEach(el => el.textContent = setti
 document.querySelectorAll('[data-size]').forEach(el => el.textContent = settings.installerSize);
 document.querySelectorAll('.download').forEach(el => {
   if (settings.downloadUrl) { el.href = settings.downloadUrl; el.removeAttribute('aria-disabled'); el.setAttribute('download', 'Prism-Browser-' + settings.version + '-Setup.exe'); }
+  else { el.textContent = 'Download pending'; el.setAttribute('aria-disabled', 'true'); }
 });
 document.querySelectorAll('[data-url]').forEach(el => {
   const key = el.dataset.url;

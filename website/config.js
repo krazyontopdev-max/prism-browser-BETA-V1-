@@ -1,7 +1,7 @@
 // Add public URLs when the release and accounts are ready.
 window.PRISM = {
-  downloadUrl: 'downloads/Prism-Browser-1.0.0-Setup.exe',
-  githubUrl: '',
+  downloadUrl: '',
+  githubUrl: 'https://github.com/krazyontopdev-max/prism-browser-BETA-V1-',
   stripeUrl: '',
   paypalUrl: '',
   email: '',
