@@ -1,0 +1,14 @@
+const settings = window.PRISM;
+document.querySelectorAll('[data-version]').forEach(el => el.textContent = settings.version);
+document.querySelectorAll('[data-size]').forEach(el => el.textContent = settings.installerSize);
+document.querySelectorAll('.download').forEach(el => {
+  if (settings.downloadUrl) { el.href = settings.downloadUrl; el.removeAttribute('aria-disabled'); el.setAttribute('download', 'Prism-Browser-' + settings.version + '-Setup.exe'); }
+});
+document.querySelectorAll('[data-url]').forEach(el => {
+  const key = el.dataset.url;
+  const value = settings[key];
+  if (value) { el.href = key === 'email' ? `mailto:${value}` : value; el.removeAttribute('aria-disabled'); }
+});
+document.querySelectorAll('[data-pending]').forEach(el => { if (settings[el.dataset.pending]) el.hidden = true; });
+if (settings.email && settings.discordUrl) document.querySelector('#contact-pending').hidden = true;
+if (settings.stripeUrl && settings.paypalUrl) document.querySelector('#support-pending').hidden = true;

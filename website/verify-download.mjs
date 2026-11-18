@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import { readFile, stat } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { createReadStream } from 'node:fs';
+import vm from 'node:vm';
+
+const root = new URL('./', import.meta.url);
+const context = { window: {} };
+vm.runInNewContext(await readFile(new URL('config.js', root), 'utf8'), context);
+const config = context.window.PRISM;
+assert.equal(config.version, '1.0.0');
+assert.equal(config.downloadUrl, 'downloads/Prism-Browser-1.0.0-Setup.exe');
+const file = new URL(config.downloadUrl, root);
+const info = await stat(file);
+assert.equal(info.size, 188762230);
+const hash = createHash('sha256');
+for await (const chunk of createReadStream(file)) hash.update(chunk);
+const checksum = hash.digest('hex');
+const original = createHash('sha256');
+for await (const chunk of createReadStream(new URL('../dist/Prism-Browser-1.0.0-Setup.exe', root))) original.update(chunk);
+assert.equal(checksum, original.digest('hex'));
+console.log(JSON.stringify({version: config.version, bytes: info.size, sha256: checksum, matchedBuild: true}, null, 2));

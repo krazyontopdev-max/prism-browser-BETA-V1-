@@ -1,0 +1,78 @@
+:root { color-scheme: dark; --accent: #9b7dff; font-family: 'Segoe UI', system-ui, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #e0e0e0; color: #000; overflow: hidden; }
+svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button { border: 0; border-radius: 6px; background: #121212; color: #f5f5f5; padding: 9px 12px; }
+button:hover { background: #292929; }
+[hidden] { display: none !important; }
+#wallpaper { position: fixed; inset: 0 0 0 60px; background-color: #e0e0e0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+aside { position: fixed; inset: 0 auto 0 0; width: 60px; padding: 18px 6px 12px; background: #000; display: flex; align-items: center; flex-direction: column; gap: 10px; z-index: 2; }
+.rail-button { width: 44px; height: 44px; display: grid; place-items: center; padding: 8px; font-size: 26px; background: transparent; flex-shrink: 0; }
+#home { border-left: 2px solid var(--accent); background: #202020; }
+#shortcuts { display: flex; flex-direction: column; gap: 6px; overflow: auto; min-height: 0; scrollbar-width: thin; }
+#shortcuts a { display: grid; place-items: center; width: 44px; min-height: 40px; text-decoration: none; color: #eee; border-radius: 6px; font-size: 15px; }
+#shortcuts a:hover { background: #242424; }
+#shortcuts img { width: 24px; height: 24px; object-fit: contain; }
+.bottom { margin-top: auto; }
+main { position: absolute; left: 60px; right: 0; top: clamp(80px, 23vh, 240px); display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding: 0 clamp(24px, 4.5vw, 75px); }
+.branding { min-width: 0; }
+.wordmark { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; color: #000; }
+.wordmark svg { width: 50px; height: 50px; stroke-width: 4; }
+h1 { font-size: 42px; line-height: 1; margin: 0; font-weight: 650; letter-spacing: -1px; }
+.branding form { display: flex; gap: 13px; align-items: center; background: #070707; color: #f5f5f5; border: 1px solid #292929; border-radius: 14px; padding: 4px 10px 4px 17px; min-height: 52px; }
+#search { border: 0; outline: 0; min-width: 0; flex: 1; height: 42px; background: transparent; color: #f5f5f5; font-size: 15px; }
+#search::placeholder { color: #bdbdbd; }
+.branding form:focus-within { border-color: var(--accent); }
+.branding form button { padding: 7px; background: transparent; display: grid; place-items: center; }
+.clock { text-align: right; white-space: nowrap; color: #161616; }
+.has-wallpaper .clock { color: #fff; }
+#clock { font-size: clamp(64px, 9.5vw, 154px); font-weight: 350; letter-spacing: -5px; line-height: 1.03; font-variant-numeric: tabular-nums; }
+#period { font-size: 20px; margin-left: 8px; }
+#date { font-size: clamp(16px, 2.3vw, 30px); margin-top: 10px; }
+footer { position: fixed; bottom: 22px; left: 82px; right: 24px; display: flex; justify-content: space-between; gap: 20px; align-items: end; pointer-events: none; }
+.credit, .controls { background: #080808; color: #eee; border-radius: 10px; padding: 10px 13px; pointer-events: auto; }
+.credit { font-size: 11px; max-width: min(65%, 640px); line-height: 1.6; overflow-wrap: anywhere; }
+.credit a { color: #eee; margin-left: 8px; }
+.credit #credit { margin-left: 0; text-decoration: none; }
+.credit #credit[href]:hover { text-decoration: underline; }
+.controls { display: flex; gap: 4px; padding: 5px; flex-shrink: 0; }
+.controls button { display: grid; place-items: center; background: transparent; padding: 8px; }
+.controls button:hover { background: #292929; }
+dialog { background: #151515; color: #f5f5f5; border: 1px solid #3a3a3a; border-radius: 10px; padding: 0; width: min(560px, calc(100vw - 30px)); max-height: calc(100vh - 40px); }
+dialog::backdrop { background: #0009; }
+dialog header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid #333; }
+dialog header button { font-size: 22px; background: transparent; padding: 2px 8px; }
+h2 { font-size: 17px; margin: 0; font-weight: 600; }
+h3 { font-size: 14px; margin: 22px 0 12px; }
+.settings-content, .editor { padding: 18px 20px; overflow: auto; }
+dialog label { font-size: 13px; }
+dialog select, dialog input:not([type=checkbox]) { display: block; width: 100%; border: 1px solid #444; border-radius: 4px; background: #242424; color: #fff; padding: 9px; margin: 6px 0 14px; }
+.check { display: inline-flex; align-items: center; gap: 7px; }
+input[type=checkbox] { accent-color: var(--accent); }
+fieldset { border: 1px solid #333; margin: 12px 0; padding: 10px; display: flex; flex-wrap: wrap; gap: 12px; }
+legend { font-size: 12px; color: #bbb; }
+.note { color: #b8b8b8; font-size: 12px; line-height: 1.6; }
+details { border-top: 1px solid #333; margin-top: 18px; padding-top: 14px; }
+summary { cursor: pointer; font-size: 13px; }
+.row, .list-row { display: flex; align-items: center; gap: 8px; }
+.list-row { padding: 8px 0; border-bottom: 1px solid #303030; font-size: 12px; }
+.list-row span { flex: 1; overflow-wrap: anywhere; min-width: 0; }
+.list-row button { font-size: 11px; padding: 6px 8px; }
+@media (max-width: 900px) { main { grid-template-columns: 1fr; top: 12vh; gap: 32px; max-width: 720px; margin: auto; } .clock { text-align: left; grid-row: 1; } #clock { font-size: 76px; letter-spacing: -3px; } #date { font-size: 19px; } .wordmark { margin-bottom: 18px; } h1 { font-size: 34px; } .wordmark svg { width: 40px; height: 40px; } }
+@media (max-height: 530px) { main { top: 9vh; gap: 16px; } .wordmark { margin-bottom: 12px; } #clock { font-size: 60px; } #date { margin-top: 4px; } footer { bottom: 12px; } }
+@media (max-width: 600px) { footer { left: 72px; right: 12px; gap: 8px; } .credit { font-size: 10px; max-width: 55%; padding: 7px; } main { padding: 0 20px; } }
+@media (max-width: 900px) and (max-height: 420px) {
+    main { top: 14px; gap: 12px; }
+    #clock { font-size: 44px; letter-spacing: -2px; }
+    #period { font-size: 15px; }
+    #date { font-size: 14px; margin-top: 3px; }
+    .wordmark { gap: 10px; margin-bottom: 10px; }
+    .wordmark svg { width: 28px; height: 28px; }
+    h1 { font-size: 28px; }
+    .branding form { min-height: 44px; }
+    #search { height: 34px; font-size: 14px; }
+    footer { bottom: 10px; }
+}

@@ -1,0 +1,112 @@
+PRISM BROWSER — DEVELOPMENT AND READINESS REPORT
+
+CURRENT STATUS
+
+Prism has been built and tested as a Windows browser using C++17, Qt Widgets, and Qt WebEngine. The tested candidate opens from the “Prism Browser” shortcut on the Desktop.
+
+It includes the requested browser features and passed local regression, media, WebRTC, screen-sharing, and installer tests. It is ready for use and testing on this computer.
+
+It is not yet ready to call a public V1.0 release. Codec redistribution rights, testing on a clean Windows machine, and real-world calls and video playback still need further acceptance. “Public V1.0” means a build prepared for other people to download, with release requirements checked. It does not mean Prism cannot run on this PC.
+
+WHAT WAS BUILT
+
+Prism’s existing browser was developed through versions 0.1 to 0.7, adding features and visual updates while retaining its Qt architecture.
+
+The browser includes:
+
+- Multiple tabs, navigation controls, search, shortcuts, bookmarks, history, and local profiles.
+- A new-tab page with 40 offline wallpapers, custom wallpaper support, shortcuts, a clock, and settings.
+- Dark styling, themes, and customizable accent color.
+- Privacy Shields and private browsing.
+- Downloads, website permissions, fullscreen, and session recovery.
+- Tab sleeping modes, including Balanced and Maximum Savings.
+- Keep Awake for tabs that should remain active.
+- Error handling and persistent local browser data.
+
+A separate Qt WebEngine engine was also compiled for testing. It enables H.264 video and AAC audio and includes a targeted screen-sharing change. It was installed into an isolated test location and used to build a separate Prism candidate. The normal installed Qt libraries and regular Prism profile were not replaced.
+
+TESTING COMPLETED
+
+The local regression tests passed on the candidate and again from the installed package:
+
+- Privacy tests: 12 passed.
+- Browser tests: 23 passed.
+- Window tests: 34 passed, 3 optional tests skipped.
+- New-tab tests: 10 passed.
+
+That is 79 passed, 0 failed, and 3 skipped. The skipped cases are optional checks that need separate test conditions.
+
+Media and calling checks also passed:
+
+- H.264/AAC MP4 played and decoded video frames.
+- Standalone AAC audio played.
+- VP9, AV1, and PCM audio played.
+- Local WebRTC test received decoded video frames.
+- Camera and microphone test passed, with 21 camera frames and a live microphone signal.
+- Screen-sharing fixture captured its own test window and verified frames.
+- Prism restored a saved tab after an isolated forced-close test.
+- Settings search and apply worked.
+- A public HTTPS example page rendered.
+- WebGL used the computer’s Intel UHD 620 graphics through Direct3D 11.
+- Installer upgrade, uninstall, and reinstall passed in an isolated test location.
+- Uninstall preserved the test profile.
+- All 183 files in the installed package matched the staged files.
+
+One initial run of the installed window tests exited with an error but did not save its detailed test output. A logged rerun passed all 34 window tests, with the same 3 optional skips.
+
+WEBSITE CHECKS
+
+YouTube and TikTok opened to public pages. The YouTube page showed a consent screen, so the test did not establish that a video stream played.
+
+DeepSeek opened to its sign-in page. Claude showed a Cloudflare verification page. That page is a website security check. It was not bypassed.
+
+These checks establish that the sites opened or displayed those pages. They do not establish that sign-in, video playback, or every site feature works.
+
+The owner reported that a Google Meet call worked in the earlier Prism build with camera, microphone, and two-way audio/video, but screen sharing did not. That report was for the earlier build, so the custom engine still needs a real Google Meet screen-sharing test with a second device.
+
+PERFORMANCE MEASUREMENTS
+
+The stock engine and custom candidate were tested twice each, alternating the order. Both used the same browser window size, wallpaper, and synthetic pages. Each page touched 32 MiB of JavaScript data. Memory figures include Prism’s WebEngine child processes.
+
+Measurement | Stock engine | Custom candidate
+New tab ready | 2.50–4.00 seconds | 2.55–2.73 seconds
+Wallpaper decoded | 2.59–4.20 seconds | 2.68–2.82 seconds
+Idle memory | about 149 MiB | 160–162 MiB
+One loaded tab | 195–202 MiB | 202–208 MiB
+Five loaded tabs | about 439 MiB | 454–457 MiB
+Ten loaded tabs | 756–757 MiB | about 786 MiB
+Ten tabs in Maximum Savings | 285–286 MiB | about 295 MiB
+Ten-tab switch acknowledgement | 39–46 ms | about 38 ms
+
+The new engine was slightly heavier in memory in this workload. The test does not show that Prism uses less memory than Chrome.
+
+Maximum Savings reduced candidate memory from about 786 MiB to 295 MiB by suspending eligible inactive tabs. This was a synthetic test, so results vary with real websites and media. After rapidly waking and closing tabs, the measured memory settled around 194–195 MiB at 30 and 60 seconds. That single run does not prove general memory behavior.
+
+No separate “Game Mode” was implemented. The benchmark does not show how Prism affects the performance of a game running at the same time.
+
+INSTALLER AND FILES
+
+Private candidate installer:
+C:\Users\user\Desktop\Prism\dist\PrismCodecCandidate-0.7.0-Preview-Setup.exe
+
+The tested candidate was installed separately under the Prism WebEngine lab folder. A shortcut named “Prism Browser” was placed directly on the Desktop and points to that installation.
+
+Acceptance report:
+C:\Users\user\Desktop\Prism\docs\v1-acceptance.md
+
+Private candidate source snapshot:
+C:\Users\user\Desktop\Prism\dist\PrismSources\Prism-codec-candidate-source-20261118.zip
+
+WHAT REMAINS BEFORE PUBLIC RELEASE
+
+1. Codec distribution rights: H.264 and AAC playback worked in tests, but public redistribution requires reviewing applicable codec patent licences and Qt/Chromium distribution obligations. The local test results do not settle those rights.
+2. Clean Windows installation: The installer was tested on this computer, not on a separate clean Windows machine without Qt or developer tools.
+3. Real-world acceptance: Test actual YouTube/TikTok video playback and Google Meet screen sharing with a second device. Also verify any services you rely on.
+4. Release packaging: The tested installer still identifies itself as Prism Codec Candidate 0.7.0 Preview. A public 1.0 release needs final version details, release notes, and complete notices.
+5. Signing and publication: The installer has not been code-signed or uploaded publicly. Unsigned Windows installers can display security warnings.
+
+IN PLAIN LANGUAGE
+
+The browser is built, it opens on this PC, and its core features and local tests passed. The new engine successfully played H.264/AAC test media and passed local camera, microphone, WebRTC, and test-window sharing checks.
+
+You can use the candidate now. It is not yet a fully cleared and verified public release. The largest outstanding items are codec distribution rights, a clean-PC installation test, and confirming real website video and Google Meet screen sharing.
