@@ -13,3 +13,10 @@ document.querySelectorAll('[data-url]').forEach(el => {
 document.querySelectorAll('[data-pending]').forEach(el => { if (settings[el.dataset.pending]) el.hidden = true; });
 if (settings.email && settings.discordUrl) document.querySelector('#contact-pending').hidden = true;
 if (settings.stripeUrl && settings.paypalUrl) document.querySelector('#support-pending').hidden = true;
+if (settings.discordUsername && !settings.discordUrl) {
+  const discord = document.querySelector('[data-url="discordUrl"]');
+  const text = document.createElement('span');
+  text.textContent = `${settings.discordDisplayName || 'Discord'} · @${settings.discordUsername}`;
+  discord.replaceWith(text);
+}
+if (settings.email && (settings.discordUrl || settings.discordUsername)) document.querySelector('#contact-pending').hidden = true;
