@@ -14,3 +14,9 @@ use a new Chromium flag as a substitute for identifying a bug.
 Retain all third-party notices and photo attribution. Do not modify installed
 Qt or redistribute codecs without resolving the required rights and build
 maintenance. Never claim faster performance without comparable measurements.
+
+## Contribution attribution
+
+Prism is developed by KrazyOnTop with assistance from OpenAI Codex/ChatGPT.
+AI assistance is used for implementation, debugging, documentation and review;
+the project owner remains responsible for decisions, testing and releases.
